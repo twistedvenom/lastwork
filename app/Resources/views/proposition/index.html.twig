@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Propositions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>State</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proposition in propositions %}
+            <tr>
+                <td><a href="{{ path('proposition_show', { 'id': proposition.id }) }}">{{ proposition.id }}</a></td>
+                <td>{{ proposition.name }}</td>
+                <td>{% if proposition.state %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('proposition_show', { 'id': proposition.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('proposition_edit', { 'id': proposition.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proposition_new') }}">Create a new proposition</a>
+        </li>
+    </ul>
+{% endblock %}
